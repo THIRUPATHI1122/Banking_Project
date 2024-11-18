@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer</title>
+</head>
+<body>
+   <h1>Transfer</h1>
+
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Transfer</button>
+
+  </form>
+   <a href="{% url 'transfer_history' %}">Transfer History</a>
+   <a href="{% url 'account_list' %}">Back</a>
+</body>
+</html>

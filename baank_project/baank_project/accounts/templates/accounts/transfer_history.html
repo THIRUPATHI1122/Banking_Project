@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transfer History</title>
+    <style>
+    table{
+        width : 100%;
+        border-collapse: collapse;
+
+    }
+        th,td{
+             border: 1px solid #ddd;
+             padding: 8px;
+             text-align:center;
+            }
+        th{
+           background-color:#f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Transfer History</h1>
+     <table>
+         <tr>
+             <th>Account</th>
+             <th>Transfer_Amount</th>
+             <th>Status</th>
+             <th>balance</th>
+             <th>Date and Time</th>
+
+         </tr>
+         {% for transfer in transfers %}
+         <tr>
+             <td>{{ transfer.from_account }}</td>
+             <td>-{{ transfer.amount_from }}</td>
+             <td>{{ transfer.from_status }}</td>
+             <td>{{ transfer.from_account.balance }}</td>
+             <td>{{ transfer.datetime }}</td>
+         </tr>
+         <tr>
+             <td>{{ transfer.to_account }}</td>
+             <td>+{{ transfer.amount_to }}</td>
+             <td>{{ transfer.to_status }}</td>
+             <td>{{ transfer.to_account.balance }}</td>
+             <td>{{ transfer.datetime }}</td>
+         </tr>
+         {% empty %}
+         <tr>No Transfer</tr>
+         {% endfor %}
+     </table>
+       <a href="{% url 'account_list' %}">Back</a>
+</body>
+</html>

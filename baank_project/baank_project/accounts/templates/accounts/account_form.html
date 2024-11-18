@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Account</title>
+</head>
+<body>
+  <h1>Add Account</h1>
+ <form method="POST">
+    {% csrf_token %}
+     {{ form.as_p }}
+     <button type="submit">Save</button>
+ </form>
+
+   <a href="{% url 'account_list' %}">Cancel</a>
+
+
+
+</body>
+</html>

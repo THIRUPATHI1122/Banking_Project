@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account List</title>
+
+    <style>
+        table{
+          width :100%;
+          collapse :border-collapse;
+        }
+        th,tr{
+             border:1px solid #ddd;
+             text-align:center;
+        }
+        th{
+          background-color:#f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Account List</h1>
+<a href="{% url 'account_create' %}">Account Create</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Account Number</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Account type</th>
+        <th>Balance</th>
+        <th>Action</th>
+
+    </tr>
+
+   {% for account in accounts %}
+
+    <tr>
+        <td>{{ account.acc_name }}</td>
+        <td>{{ account.acc_no }}</td>
+        <td>{{ account.mobile }}</td>
+        <td>{{ account.email }}</td>
+        <td>{{ account.acc_type }}</td>
+        <td>{{ account.balance }}</td>
+        <td>
+            <a href="{% url 'account_update' account.pk %}">Edit</a>
+            <a href="{% url 'account_delete' account.pk %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+      <tr> No accounts found. </tr>
+    {% endfor %}
+
+</table>
+
+<a href="{% url 'transfer' %}">Transfer Fund</a>
+<a href="{% url 'transfer_history' %}">Transfer History</a>
+
+
+
+</body>
+</html>
